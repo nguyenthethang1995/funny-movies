@@ -10,14 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_160650) do
+ActiveRecord::Schema.define(version: 2021_12_01_093114) do
 
   create_table "movies", force: :cascade do |t|
     t.string "link"
-    t.integer "users_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_movies_on_users_id"
+    t.string "title"
+    t.integer "likes"
+    t.integer "dislikes"
+    t.string "uid"
+    t.text "description"
+    t.index ["uid"], name: "index_movies_on_uid"
+    t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

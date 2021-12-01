@@ -1,0 +1,25 @@
+
+<% if @movies.any? %>
+  <div class="container mt-5 mb-5">
+    <% @movies.each do |movie| %>
+      <div class="row border mt-3">
+        <div class="col">
+          <iframe width="420" class="embed-responsive-item" height="315" src="<%= movie.youtube_video_url %>" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col overflow-auto" style="max-height:315px">
+          <h5><%= movie.title %></h5>
+          <p>Shared by: <%= movie.user.email %></p>
+          <p>
+            <i class="bi bi-hand-thumbs-up"></i> <%= movie.likes %>
+            <i class="bi bi-hand-thumbs-down"></i> <%= movie.dislikes %>
+          </p>
+          <p>Description:</p>
+          <p><%= movie.description %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @movies %>
+<% else %>
+  There are no Movies yet.
+<% end %>

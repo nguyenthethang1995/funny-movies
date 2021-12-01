@@ -1,0 +1,17 @@
+<div class="container border mt-5">
+  <legend>Share a youtube movie</legend>
+  <%= form_tag movies_path, method: :post do %>
+    <div class="mb-3 row mt-3">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Youtube URL</label>
+      <div class="col-sm-10">
+        <%= text_field_tag "link", nil, class: "form-control", required: true %>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label"></label>
+      <div class="col-sm-10">
+        <%= submit_tag "Share", class: "btn btn-primary form-control" %>
+      </div>
+    </div>
+  <% end %>
+</div>
