@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
 
-  before_action :set_user
-  before_action :require_signed_in
+  before_action :require_signed_in, :set_user
 
   private
 
@@ -11,6 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_signed_in
+    flash[:danger] = "You need to signed in to do that"
     return redirect_to root_path unless user_signed_in?
   end
 end

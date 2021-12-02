@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_signed_in, only: :create
+  skip_before_action :require_signed_in
+
+  after_action :fetch_youtube_metadata, only: :create
 
   def create
     user = User.find_by_email(params[:email])
@@ -25,5 +27,11 @@ class SessionsController < ApplicationController
   def logout
     session[:user_id] = nil
     redirect_to root_path
+  end
+
+  private
+
+  def fetch_youtube_metadata
+    UpdateYoutubeMetadata.perform_now
   end
 end
