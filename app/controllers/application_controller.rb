@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_signed_in
-    flash[:danger] = "You need to signed in to do that"
-    return redirect_to root_path unless user_signed_in?
+    unless user_signed_in?
+      flash[:danger] = "You need to signed in to do that"
+      return redirect_to root_path
+    end
   end
 end
